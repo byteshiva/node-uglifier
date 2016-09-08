@@ -148,7 +148,7 @@
         }).length > 0;
         ast = packageUtils.getAst(source);
         requireStatements = packageUtils.getRequireStatements(ast, filePath, _this.fileExtensions);
-        requireStatements.each(function(o, i) {
+        requireStatements.forEach(function(o, i) {
           return requireStatements[i] = _.extend(o, {
             pathSaltedHash: cryptoUtils.getSaltedHash(o.path, _this.hashAlgorithm, _this.salt)
           });
@@ -271,7 +271,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         p = _ref[_i];
         if (p.indexOf(projectDir) !== 0) {
-          throw new Error(p + " dependency not found each dependency should be in the project Dir: " + projectDir);
+          throw new Error(p + " dependency not found forEach dependency should be in the project Dir: " + projectDir);
         }
         baseDir = path.dirname(p.slice(projectDir.length + 1));
         baseName = path.basename(p);
@@ -323,14 +323,14 @@
       fsExtra.ensureDirSync(path.dirname(outFileAbs));
       fs.writeFileSync(outFileAbs, this.toString());
       outDirRoot = path.dirname(outFileAbs);
-      _.keys(_this.lastResult.filteredOutFilesObj).each(function(fileName) {
+      _.keys(_this.lastResult.filteredOutFilesObj).forEach(function(fileName) {
         var copyObj, newFile;
         copyObj = _this.lastResult.filteredOutFilesObj[fileName];
         newFile = path.resolve(outDirRoot, copyObj.pathRel);
         fsExtra.ensureDirSync(path.dirname(newFile));
         return fs.writeFileSync(newFile, copyObj.sourceMod);
       });
-      return _this.filteredOutFiles.each(function(fileName) {
+      return _this.filteredOutFiles.forEach(function(fileName) {
         var newFile, pathRel;
         pathRel = _this.getNewRelativePathForFiltered(fileName);
         newFile = path.resolve(outDirRoot, pathRel);
